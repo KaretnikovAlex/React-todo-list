@@ -4,7 +4,7 @@ interface TodoFormProps {
   addTodo: (text: string) => void;
 }
 
-function TodoForm({ addTodo }: TodoFormProps) {
+export function TodoForm({ addTodo }: TodoFormProps) {
   const [text, setText] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -27,5 +27,3 @@ function TodoForm({ addTodo }: TodoFormProps) {
     </form>
   );
 };
-
-export default TodoForm;
