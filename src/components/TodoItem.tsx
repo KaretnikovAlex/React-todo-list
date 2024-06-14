@@ -3,11 +3,18 @@ import { Todo } from '../models/Todo';
 
 interface TodoItemProps {
     todo: Todo;
+    toggleTodo: (id: number) => void;
 }
 
-function TodoItem({ todo }: TodoItemProps) {
+function TodoItem({ todo, toggleTodo }: TodoItemProps) {
     return (
-        <li>
+        <li
+            onClick={() => toggleTodo(todo.id)}
+            style={{
+                textDecoration: todo.completed ? 'line-through' : 'none',
+                cursor: 'pointer',
+            }}
+        >
             {todo.text}
         </li>
     );

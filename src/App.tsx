@@ -11,11 +11,19 @@ function App() {
     setTodos([...todos, { id: Date.now(), text, completed: false }]);
   };
 
+  const toggleTodo = (id: number) => {
+    setTodos(
+      todos.map(todo =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      )
+    );
+  };
+
   return (
     <div className="App">
       <h1>My todo list</h1>
       <TodoForm addTodo={addTodo} />
-      <TodoList todos={todos}  />
+      <TodoList todos={todos} toggleTodo={toggleTodo} />
     </div>
   );
 }

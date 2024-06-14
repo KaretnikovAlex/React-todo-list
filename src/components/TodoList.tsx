@@ -4,13 +4,14 @@ import TodoItem from './TodoItem';
 
 interface TodoListProps {
     todos: Todo[];
+    toggleTodo: (id: number) => void;
 }
 
-export function TodoList({ todos }: TodoListProps) {
+export function TodoList({ todos, toggleTodo }: TodoListProps) {
     return (
         <ul>
             {todos.map(todo => (
-                <TodoItem todo={todo}/>
+                <TodoItem key={todo.id} todo={todo} toggleTodo={toggleTodo} />
             ))}
         </ul>
     );
