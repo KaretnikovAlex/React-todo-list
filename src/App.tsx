@@ -28,7 +28,11 @@ function App() {
 
   const todoCounter = () => {
     let counter = todos.filter(todo => !todo.completed).length;
-    return  counter + ' todos left';
+    return counter + ' todos left';
+  }
+
+  const clearComplited = () => {
+    setTodos(todos.map(todo => (todo.completed ? { ...todo, completed: false } : todo)));
   }
 
   return (
@@ -40,6 +44,7 @@ function App() {
       <button onClick={() => setFilter('all')}>All</button>
       <button onClick={() => setFilter('active')}>Active</button>
       <button onClick={() => setFilter('completed')}>Completed</button>
+      <button onClick={() => clearComplited()}>Clear completed</button>
     </div>
   );
 }
