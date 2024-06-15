@@ -6,6 +6,7 @@ import { TodoList } from './components/TodoList';
 
 function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
+  const [filter, setFilter] = useState<'all' | 'active' | 'completed'>('all');
 
   const addTodo = (text: string) => {
     setTodos([...todos, { id: Date.now(), text, completed: false }]);
@@ -18,12 +19,21 @@ function App() {
       )
     );
   };
+  const filteredTodos = todos.filter(todo => {
+    if (filter === 'all') return true;
+    if (filter === 'active') return !todo.completed;
+    if (filter === 'completed') return todo.completed;
+    return true;
+  });
 
   return (
     <div className="App">
       <h1>My todo list</h1>
       <TodoForm addTodo={addTodo} />
-      <TodoList todos={todos} toggleTodo={toggleTodo} />
+      <TodoList todos={filteredTodos} toggleTodo={toggleTodo} />
+      <button onClick={() => setFilter('all')}>All</button>
+      <button onClick={() => setFilter('active')}>Active</button>
+      <button onClick={() => setFilter('completed')}>Completed</button>
     </div>
   );
 }
