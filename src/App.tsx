@@ -19,17 +19,24 @@ function App() {
       )
     );
   };
+
   const filteredTodos = todos.filter(todo => {
     if (filter === 'all') return true;
     if (filter === 'active') return !todo.completed;
     if (filter === 'completed') return todo.completed;
   });
 
+  const todoCounter = () => {
+    let counter = todos.filter(todo => !todo.completed).length;
+    return  counter + ' todos left';
+  }
+
   return (
     <div className="App">
       <h1>My todo list</h1>
       <TodoForm addTodo={addTodo} />
       <TodoList todos={filteredTodos} toggleTodo={toggleTodo} />
+      <span>{todoCounter()}</span>
       <button onClick={() => setFilter('all')}>All</button>
       <button onClick={() => setFilter('active')}>Active</button>
       <button onClick={() => setFilter('completed')}>Completed</button>
