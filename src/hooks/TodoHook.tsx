@@ -36,15 +36,17 @@ export function TodoHook() {
     }
 
     return (
-        <section>
+        <section className='todo'>
             <h2>My todo list</h2>
             <TodoForm addTodo={addTodo} />
             <TodoList todos={filteredTodos} toggleTodo={toggleTodo} />
-            <span>{todoCounter()}</span>
-            <button onClick={() => setFilter('all')}>All</button>
-            <button onClick={() => setFilter('active')}>Active</button>
-            <button onClick={() => setFilter('completed')}>Completed</button>
-            <button onClick={() => clearComplited()}>Clear completed</button>
+            <div className="buttons-wrapper">
+                <span>{todoCounter()}</span>
+                <button className={(filter === 'all') ? 'activeBtn' : ''} onClick={() => setFilter('all')}>All</button>
+                <button className={(filter === 'active') ? 'activeBtn' : ''} onClick={() => setFilter('active')}>Active</button>
+                <button className={(filter === 'completed') ? 'activeBtn' : ''} onClick={() => setFilter('completed')}>Completed</button>
+                <button onClick={() => clearComplited()}>Clear completed</button>
+            </div>
         </section>
     );
 }
